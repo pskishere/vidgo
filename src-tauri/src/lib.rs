@@ -1,4 +1,5 @@
 use std::process::Command;
+use tauri_plugin_autostart::MacosLauncher;
 
 // 获取系统音量
 #[tauri::command]
@@ -156,6 +157,7 @@ fn toggle_system_mute() -> Result<bool, String> {
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_autostart::init(MacosLauncher::LaunchAgent, Some(vec!["--silently"])))
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_shell::init())
         .invoke_handler(tauri::generate_handler![

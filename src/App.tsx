@@ -4,6 +4,7 @@ import VideoList from './components/VideoList';
 import { Monitor, List, Settings } from 'lucide-react';
 import './App.css';
 import './VideoPlayer.css';
+import SettingsModal from "./components/SettingsModal";
 
 interface VideoSource {
   id: string;
@@ -18,6 +19,7 @@ function App() {
   const [videos, setVideos] = useState<VideoSource[]>([]);
   const [currentVideo, setCurrentVideo] = useState<VideoSource | null>(null);
   const [showSidebar, setShowSidebar] = useState(true);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   // 初始化示例视频
   useEffect(() => {
@@ -89,7 +91,11 @@ function App() {
           >
             <List size={20} />
           </button>
-          <button className="settings-btn" title="设置">
+          <button 
+            className="settings-btn" 
+            onClick={() => setIsSettingsOpen(true)}
+            title="设置"
+          >
             <Settings size={20} />
           </button>
         </div>
@@ -147,6 +153,10 @@ function App() {
           v1.0.0 (系统音量)
         </div>
       </footer>
+      <SettingsModal 
+        isOpen={isSettingsOpen} 
+        onClose={() => setIsSettingsOpen(false)} 
+      />
     </div>
   );
 }
