@@ -1,0 +1,312 @@
+/* 全局重置和基础样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f5f5f5;
+  color: #333;
+  overflow: hidden;
+}
+
+/* 主应用容器 */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background: #f5f5f5;
+}
+
+/* 顶部导航栏 */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.app-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #2196f3;
+}
+
+.app-logo h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.app-subtitle {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-toggle,
+.settings-btn {
+  background: none;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-toggle:hover,
+.settings-btn:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.sidebar-toggle.active {
+  background: #2196f3;
+  color: white;
+}
+
+/* 主要内容区域 */
+.app-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  gap: 16px;
+  padding: 16px;
+}
+
+/* 视频播放区域 */
+.video-section {
+  flex: 1;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 无视频占位符 */
+.no-video-placeholder {
+  text-align: center;
+  color: #666;
+  padding: 60px 40px;
+}
+
+.no-video-placeholder svg {
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.no-video-placeholder h3 {
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.no-video-placeholder p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* 侧边栏 */
+.app-sidebar {
+  width: 400px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.app-sidebar.show {
+  width: 400px;
+  opacity: 1;
+}
+
+.app-sidebar.hide {
+  width: 0;
+  opacity: 0;
+}
+
+/* 状态栏 */
+.app-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px;
+  background: white;
+  border-top: 1px solid #e0e0e0;
+  font-size: 12px;
+  color: #666;
+}
+
+.status-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-version {
+  font-weight: 500;
+  color: #999;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+  .app-sidebar {
+    width: 350px;
+  }
+  
+  .app-sidebar.show {
+    width: 350px;
+  }
+}
+
+@media (max-width: 900px) {
+  .app-main {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+  }
+  
+  .app-sidebar {
+    width: 100%;
+    height: 300px;
+  }
+  
+  .app-sidebar.show {
+    width: 100%;
+    height: 300px;
+  }
+  
+  .app-sidebar.hide {
+    width: 100%;
+    height: 0;
+  }
+  
+  .video-section {
+    height: 400px;
+  }
+  
+  .app-header {
+    padding: 10px 16px;
+  }
+  
+  .app-footer {
+    padding: 6px 16px;
+  }
+  
+  .status-info {
+    font-size: 11px;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 600px) {
+  .app-logo h1 {
+    font-size: 20px;
+  }
+  
+  .app-subtitle {
+    display: none;
+  }
+  
+  .status-info span:not(:first-child):not(:nth-child(2)) {
+    display: none;
+  }
+  
+  .video-section {
+    height: 300px;
+  }
+  
+  .app-sidebar {
+    height: 250px;
+  }
+  
+  .app-sidebar.show {
+    height: 250px;
+  }
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* 加载动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.video-section,
+.app-sidebar {
+  animation: fadeIn 0.5s ease;
+}
+
+/* 工具提示样式 */
+[title] {
+  position: relative;
+}
+
+/* 焦点样式 */
+button:focus-visible {
+  outline: 2px solid #2196f3;
+  outline-offset: 2px;
+}
+
+/* 选择文本样式 */
+::selection {
+  background: rgba(33, 150, 243, 0.3);
+}
+
+::-moz-selection {
+  background: rgba(33, 150, 243, 0.3);
+}
